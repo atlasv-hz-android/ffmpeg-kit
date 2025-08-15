@@ -1,3 +1,16 @@
+## 环境
+* 安装autogen
+```shell
+brew install autogen
+```
+
+* 安卓cmake
+```shell
+pip install cmake==3.31.6
+```
+遍历目录下的cmake_minimum_required字符串，改成3.5，避免构建报错。
+
+
 ## 发布aar
 
 * 进入到android/ffmpeg-kit-android-lib
