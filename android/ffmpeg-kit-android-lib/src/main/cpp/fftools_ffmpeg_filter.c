@@ -36,7 +36,7 @@
  */
 
 #include <stdint.h>
-
+#include <math.h>
 #include "fftools_ffmpeg.h"
 
 #include "libavfilter/avfilter.h"
@@ -908,7 +908,7 @@ static int configure_input_audio_filter(FilterGraph *fg, InputFilter *ifilter,
         char args[256] = {0};
 
         av_strlcatf(args, sizeof(args), "async=%d", audio_sync_method);
-        if (audio_drift_threshold != 0.1)
+        if (fabs(audio_drift_threshold - 0.1f) > 0.00001f)
             av_strlcatf(args, sizeof(args), ":min_hard_comp=%f", audio_drift_threshold);
         if (!fg->reconfiguration)
             av_strlcatf(args, sizeof(args), ":first_pts=0");

@@ -2,9 +2,20 @@ buildscript {
     repositories {
         google()
         mavenCentral()
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/AtlasXV/android-libs")
+            credentials {
+                username = System.getenv("GPR_USR") ?: project.findProperty("GPR_USR")?.toString()
+                password = System.getenv("GPR_KEY") ?: project.findProperty("GPR_KEY")?.toString()
+            }
+        }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.3.0'
+        classpath 'com.android.tools.build:gradle:8.12.0'
+        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:2.0.21'
+        classpath 'org.jetbrains.kotlin:compose-compiler-gradle-plugin:2.0.21'
+        classpath 'com.android.now.plugin:publishlib:2.4.0'
     }
 }
 
@@ -12,6 +23,14 @@ allprojects {
     repositories {
         google()
         mavenCentral()
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/AtlasXV/android-libs")
+            credentials {
+                username = System.getenv("GPR_USR") ?: project.findProperty("GPR_USR")?.toString()
+                password = System.getenv("GPR_KEY") ?: project.findProperty("GPR_KEY")?.toString()
+            }
+        }
     }
 }
 

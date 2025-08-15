@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"com.arthenica.ffmpegkit"}]
+packageSearchIndex = [{"l":"com.arthenica.ffmpegkit"},{"l":"所有程序包","u":"allpackages-index.html"}];updateSearchResults();

@@ -16,7 +16,10 @@ artifacts {
 apply plugin: 'maven-publish'
 apply plugin: 'signing'
 
-group = 'com.arthenica'
+def releaseProject = "ffmpeg-kit-min-gpl"
+def releaseVersionName = "5.1.4"
+def releaseProjectDescription = "FFmpeg Kit For Android"
+group = 'com.android.now'
 archivesBaseName = releaseProject
 version = releaseVersionName
 
@@ -56,10 +59,10 @@ afterEvaluate {
     publishing {
         publications {
             release(MavenPublication) {
-
+                println(components)
                 groupId group
                 artifactId = libraryName
-                version = version
+                version = releaseVersionName
 
                 from components.release
 
@@ -96,19 +99,13 @@ afterEvaluate {
         }
         repositories {
             maven {
-                var releasesRepoUrl = "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
-                var snapshotsRepoUrl = "https://oss.sonatype.org/content/repositories/snapshots/"
-                url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
+                name = "GitHubPackages"
+                url = "https://maven.pkg.github.com/AtlasXV/android-libs"
                 credentials {
-                    username ossrhUsername
-                    password ossrhPassword
+                    username project.findProperty('GPR_USR')
+                    password project.findProperty('GPR_KEY')
                 }
             }
         }
     }
-}
-
-
-signing {
-    sign publishing.publications
 }
